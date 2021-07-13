@@ -1,25 +1,9 @@
-<img src=".github/Detectron2-Logo-Horz.svg" width="300" >
-
 Detectron2 is Facebook AI Research's next generation library
 that provides state-of-the-art detection and segmentation algorithms.
 It is the successor of
 [Detectron](https://github.com/facebookresearch/Detectron/)
 and [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark/).
 It supports a number of computer vision research projects and production applications in Facebook.
-
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/1381301/66535560-d3422200-eace-11e9-9123-5535d469db19.png"/>
-</div>
-
-### What's New
-* Includes new capabilities such as panoptic segmentation, Densepose, Cascade R-CNN, rotated bounding boxes, PointRend,
-  DeepLab, etc.
-* Used as a library to support building [research projects](projects/) on top of it.
-* Models can be exported to TorchScript format or Caffe2 format for deployment.
-* It [trains much faster](https://detectron2.readthedocs.io/notes/benchmarks.html).
-
-See our [blog post](https://ai.facebook.com/blog/-detectron2-a-pytorch-based-modular-object-detection-library-/)
-to see more demos and learn about detectron2.
 
 ## Installation
 
@@ -37,6 +21,31 @@ And see [projects/](projects/) for some projects that are built on top of detect
 ## Model Zoo and Baselines
 
 We provide a large set of baseline results and trained models available for download in the [Detectron2 Model Zoo](MODEL_ZOO.md).
+
+## Training on Cones Dataset
+
+1. If the dataset is not in COCO format conver it to COCO format using the link (https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html)
+
+2. Register the dataset in tools/train_net.py file by adding these lines at the top:
+'''
+from detectron2.data.datasets import register_coco_instances
+register_coco_instances("cones_train", {}, "path to train json.json", "path to train images directory")
+register_coco_instances("cones_val", {}, "path to val json.json", "path to val images directory")
+
+'''
+3. Update the dataset names in config file i.e., configs/Base-RCNN-FPN.yaml
+'''
+DATASETS:
+  TRAIN: ("cones_train",)
+  TEST: ("cones_val",)
+'''
+
+3. Start the training
+'''
+cd tools/
+python train_net.py --num-gpus 4 --config-file ../configs/COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml
+'''
+
 
 ## License
 
