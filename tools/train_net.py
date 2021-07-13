@@ -21,6 +21,11 @@ import os
 from collections import OrderedDict
 import torch
 
+from detectron2.data.datasets import register_coco_instances
+register_coco_instances("cones_train", {}, "/mnt/mars-alpha/salman/work_with_Izzedddin/cones_dectection/detectron2/datasets/cones_dataset/good/images/annotations/instances_train.json", "/mnt/mars-alpha/salman/work_with_Izzedddin/cones_dectection/detectron2/datasets/cones_dataset/good/images/train")
+register_coco_instances("cones_val", {}, "/mnt/mars-alpha/salman/work_with_Izzedddin/cones_dectection/detectron2/datasets/cones_dataset/good/images/annotations/instances_val.json", "/mnt/mars-alpha/salman/work_with_Izzedddin/cones_dectection/detectron2/datasets/cones_dataset/good/images/val")
+
+
 import detectron2.utils.comm as comm
 from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.config import get_cfg
