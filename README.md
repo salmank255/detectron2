@@ -27,24 +27,23 @@ We provide a large set of baseline results and trained models available for down
 1. If the dataset is not in COCO format conver it to COCO format using the link (https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html)
 
 2. Register the dataset in tools/train_net.py file by adding these lines at the top:
-'''
+```
 from detectron2.data.datasets import register_coco_instances
 register_coco_instances("cones_train", {}, "path to train json.json", "path to train images directory")
 register_coco_instances("cones_val", {}, "path to val json.json", "path to val images directory")
 
-'''
+```
 3. Update the dataset names in config file i.e., configs/Base-RCNN-FPN.yaml
-'''
+```
 DATASETS:
   TRAIN: ("cones_train",)
   TEST: ("cones_val",)
-'''
-
+```
 3. Start the training
-'''
+```
 cd tools/
 python train_net.py --num-gpus 4 --config-file ../configs/COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml
-'''
+```
 
 
 ## License
