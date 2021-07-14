@@ -45,6 +45,11 @@ DATASETS:
 cd tools/
 python train_net.py --num-gpus 4 --config-file ../configs/COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml
 '''
+4. Evaluation
+'''
+python train_net.py --config-file ../configs/COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml --eval-only MODEL.WEIGHTS output/model_0114999.pth
+'''
+
 
 
 ## License

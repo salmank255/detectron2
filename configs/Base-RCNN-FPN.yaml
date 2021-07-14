@@ -21,6 +21,8 @@ MODEL:
   ROI_HEADS:
     NAME: "StandardROIHeads"
     IN_FEATURES: ["p2", "p3", "p4", "p5"]
+    NUM_CLASSES: 3
+
   ROI_BOX_HEAD:
     NAME: "FastRCNNConvFCHead"
     NUM_FC: 2
@@ -29,6 +31,7 @@ MODEL:
     NAME: "MaskRCNNConvUpsampleHead"
     NUM_CONV: 4
     POOLER_RESOLUTION: 14
+    
 DATASETS:
   TRAIN: ("cones_train",)
   TEST: ("cones_val",)
